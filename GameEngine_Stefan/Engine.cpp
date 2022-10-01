@@ -6,7 +6,7 @@ void Engine::Start(sf::RenderWindow* win)
 	//run the program as long as the window is gone
 
 	while (window->isOpen()) {
-
+		Update();
 	}
 }
 
@@ -26,6 +26,8 @@ void Engine::Update()
 			window->close();
 		}
 	}
+
+	world->tick(10.0f);
 }
 
 Engine& Engine::GetInstance() 
