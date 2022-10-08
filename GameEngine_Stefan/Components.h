@@ -30,3 +30,27 @@ public:
 	}
 };
 ECS_DEFINE_TYPE(Sprite2D);
+
+struct Animator
+{
+public:
+	ECS_DECLARE_TYPE;
+
+	int spriteWidth, spriteHeight;
+	int currentColumn, currentRow, totalColumns, totalRows;
+	float currentTime, nexFrameTime;
+	bool bFacingRight;
+
+	Animator(int newWidth, int newHeight, float timeBetweenFrames, int columns, int rows) {
+		this->spriteWidth = newWidth;
+		this->spriteHeight = newHeight;
+		this->currentColumn = 0;
+		this->currentRow = 0;
+		this->totalColumns = columns;
+		this->totalRows = rows;
+		this->nexFrameTime = timeBetweenFrames;
+		this->currentTime = 0;
+		this->bFacingRight = true;
+	}
+};
+ECS_DEFINE_TYPE(Animator);
