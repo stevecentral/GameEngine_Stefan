@@ -16,6 +16,8 @@ int main(int argc, char* args[]) {
 	//add systems to the engine
 	gameEngine.AddSystem(new RenderingSystem());
 	gameEngine.AddSystem(new AnimationSystem());
+	gameEngine.AddSystem(new InputSystem(&window));
+	gameEngine.AddSystem(new MovementSystem());
 
 	//create & assign 250 entities to the world
 	//for (int x = 0; x < 25; x++)
@@ -38,12 +40,15 @@ int main(int argc, char* args[]) {
 	//assign components to entities after creation
 	background->assign<Transform>(0, 0);
 	background->assign<Sprite2D>("../Debug/Pics/bg.jpg");
+
 	stickFigure->assign<Transform>(300, 300);
 	stickFigure->assign<Sprite2D>("../Debug/Pics/herosheet.png");
 	stickFigure->assign<Animator>(32, 32, 200.0f, 4, 1);
-	tux->assign<Transform>(200, 200);
+
+	tux->assign<Transform>(200, 200, 0.3f, 0.3f);
 	tux->assign<Sprite2D>("../Debug/Pics/tux_from_linux.png");
 	tux->assign<Animator>(56, 72, 2000.0f, 3, 9);
+	tux->assign<InputController>();
 	tux->get<Animator>()->currentRow = 0; //idle row
 
 	std::cout << background->getEntityId() << " is the entity id." << std::endl;
