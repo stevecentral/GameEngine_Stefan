@@ -1,7 +1,7 @@
 #pragma once
 # include "../Engine.h"
 
-class PhysicsSystem:public ECS::EntitySystem
+class PhysicsSystem :public ECS::EntitySystem
 {
 public:
 	PhysicsSystem() = default;
@@ -12,9 +12,8 @@ public:
 	bool isColliding(ECS::ComponentHandle<BoxCollider> touchingBox, sf::RectangleShape touchedRectangle);
 	bool isColliding(ECS::ComponentHandle<BoxCollider> touchingBox, ECS::ComponentHandle<BoxCollider> touchedBox);
 
-	void checkCollisionSize(ECS::ComponentHandle<Transform> transform, ECS::ComponentHandle<BoxCollider> touchingBox, ECS::ComponentHandle<BoxCollider> touchedBox);
-	void checkCollisionSize(ECS::ComponentHandle<Transform> transform, ECS::ComponentHandle<BoxCollider> touchingBox, sf::RectangleShape touchedRectangle);
-	void checkCollisionSize(ECS::Entity* touchingEntity, ECS::Entity* touchedEntity);
+	void checkCollisionSides(ECS::ComponentHandle<Transform> transform, ECS::ComponentHandle<BoxCollider> touchingBox, ECS::ComponentHandle<BoxCollider> touchedBox);
+	void checkCollisionSides(ECS::ComponentHandle<Transform> transform, ECS::ComponentHandle<BoxCollider> touchingBox, sf::RectangleShape touchedRectangle);
+	void pushEntity(ECS::Entity* touchingEntity, ECS::Entity* touchedEntity);
 	void tick(ECS::World* world, float deltaTime) override;
-};)
-
+};
