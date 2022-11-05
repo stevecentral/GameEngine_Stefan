@@ -3,6 +3,8 @@
 void Engine::Start(sf::RenderWindow* win)
 {
 	this->window = win;
+	mainCamera = new MainCamera(sf::Vector2f(this->window->getSize().x / 2, this->window->getSize().y / 2));
+
 	//run the program as long as the window is gone
 
 	while (window->isOpen()) {
@@ -28,6 +30,8 @@ void Engine::Update()
 	}
 
 	world->tick(10.0f);
+
+	mainCamera->Update(world, 10.0f, window);
 }
 
 Engine& Engine::GetInstance() 
